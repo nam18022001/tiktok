@@ -4,6 +4,8 @@
   --primary: #fe2c55;
   --black: #000;
   --text-color: #333;
+  --font-bold: 'SofiaPro';
+  --font-solid: 'ProximaNova';
 
   --default-layout-header-height: 60px;
   --default-layout-width: 1150px;
@@ -18,7 +20,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-family: 'SofiaPro';
+  font-family: var(--font-bold);
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
