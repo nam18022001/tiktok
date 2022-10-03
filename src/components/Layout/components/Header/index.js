@@ -28,6 +28,21 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faGlobe} />,
     title: 'English',
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'Language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'Language',
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -48,6 +63,10 @@ function Header() {
       setSearchaccounts([]);
     }, 0);
   });
+
+  const handleOnChange = (menuItem) => {
+    console.log(menuItem);
+  };
 
   return (
     <header className={cx('wrapper')}>
@@ -85,7 +104,7 @@ function Header() {
         <div className={cx('actions')}>
           <Button text>Upload</Button>
           <Button primary>Log In</Button>
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={handleOnChange}>
             <button className={cx('more-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
