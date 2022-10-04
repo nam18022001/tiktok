@@ -13,9 +13,6 @@ import {
   faEllipsisVertical,
   faKeyboard,
   faCircleQuestion,
-  faMessage,
-  faBell,
-  faCloudArrowUp,
   faUserAlt,
   faCoins,
   faGear,
@@ -28,6 +25,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -140,14 +139,14 @@ function Header() {
             <>
               <ToolTip delay={[0, 200]} content="Upload video" placement="bottom">
                 <button className={cx('actions-btn')}>
-                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                  <UploadIcon />
                 </button>
               </ToolTip>
               <button className={cx('actions-btn')}>
-                <FontAwesomeIcon icon={faMessage} />
+                <MessageIcon />
               </button>
               <button className={cx('actions-btn')}>
-                <FontAwesomeIcon icon={faBell} />
+                <InboxIcon />
               </button>
             </>
           ) : (
@@ -158,10 +157,11 @@ function Header() {
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleOnChange}>
             {currentUser ? (
-              <img
+              <Image
                 className={cx('user-avatar')}
                 src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/2d5d8b982c3675d6eb52f85e0502dd4d~c5_100x100.jpeg?x-expires=1665021600&x-signature=qbAWNByOkAs%2BgWXlY2HvUXWyqy0%3D"
                 alt="avatar"
+                // fallback="https://files.fullstack.edu.vn/f8-prod/user_avatars/1/623d4b2d95cec.png"
               />
             ) : (
               <button className={cx('more-btn')}>

@@ -6,7 +6,7 @@
   --white: #fff;
   --text-color: rgb(22, 24, 35);
   --font-bold: 'SofiaPro';
-  --font-solid: 'ProximaNova';
+  --font-solid: 'ProximaNova', sans-serif;
 
   --default-layout-header-height: 60px;
   --default-layout-width: 1150px;
@@ -22,7 +22,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-family: var(--font-bold);
+  font-family: var(--font-solid);
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
