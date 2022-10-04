@@ -3,7 +3,8 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import Tippy from '@tippyjs/react/headless';
+import ToolTip from '@tippyjs/react';
+import HeadlessTippy from '@tippyjs/react/headless';
 import {
   faCircleXmark,
   faSpinner,
@@ -11,8 +12,14 @@ import {
   faGlobe,
   faEllipsisVertical,
   faKeyboard,
-  // faMagnifyingGlass,
   faCircleQuestion,
+  faMessage,
+  faBell,
+  faCloudArrowUp,
+  faUserAlt,
+  faCoins,
+  faGear,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
@@ -57,6 +64,7 @@ const MENU_ITEMS = [
 
 function Header() {
   const [searchResults, setSearchaccounts] = useState([]);
+  const currentUser = true;
 
   useEffect(() => {
     setTimeout(() => {
@@ -68,13 +76,38 @@ function Header() {
     console.log(menuItem);
   };
 
+  const userMenu = [
+    {
+      icon: <FontAwesomeIcon icon={faUserAlt} />,
+      title: 'View profile',
+      to: '/',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faCoins} />,
+      title: 'Get coins',
+      to: '/coin',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faGear} />,
+      title: 'Settings',
+      to: '/settings',
+    },
+    ...MENU_ITEMS,
+    {
+      icon: <FontAwesomeIcon icon={faSignOutAlt} />,
+      title: 'Log out',
+      to: '/logout',
+      separate: true,
+    },
+  ];
+
   return (
     <header className={cx('wrapper')}>
       <div className={cx('content')}>
         <div className={cx('logo')}>
           <img src={images.logo} alt="Logo" />
         </div>
-        <Tippy
+        <HeadlessTippy
           visible={searchResults.length > 0}
           interactive
           render={(attrs) => (
@@ -100,14 +133,41 @@ function Header() {
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>
-        </Tippy>
+        </HeadlessTippy>
         <div className={cx('actions')}>
-          <Button text>Upload</Button>
-          <Button primary>Log In</Button>
-          <Menu items={MENU_ITEMS} onChange={handleOnChange}>
-            <button className={cx('more-btn')}>
-              <FontAwesomeIcon icon={faEllipsisVertical} />
-            </button>
+          {currentUser ? (
+            // <div className={cx('current-user')}></div>
+            <>
+              <ToolTip delay={[0, 200]} content="Upload video" placement="bottom">
+                <button className={cx('actions-btn')}>
+                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                </button>
+              </ToolTip>
+              <button className={cx('actions-btn')}>
+                <FontAwesomeIcon icon={faMessage} />
+              </button>
+              <button className={cx('actions-btn')}>
+                <FontAwesomeIcon icon={faBell} />
+              </button>
+            </>
+          ) : (
+            <>
+              <Button text>Upload</Button>
+              <Button primary>Log In</Button>
+            </>
+          )}
+          <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleOnChange}>
+            {currentUser ? (
+              <img
+                className={cx('user-avatar')}
+                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/2d5d8b982c3675d6eb52f85e0502dd4d~c5_100x100.jpeg?x-expires=1665021600&x-signature=qbAWNByOkAs%2BgWXlY2HvUXWyqy0%3D"
+                alt="avatar"
+              />
+            ) : (
+              <button className={cx('more-btn')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </button>
+            )}
           </Menu>
         </div>
       </div>

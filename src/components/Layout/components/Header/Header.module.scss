@@ -101,10 +101,34 @@
 .custom-login {
   color: var(--primary);
 }
+
+//Actions
+
+.actions {
+  display: flex;
+  align-items: center;
+}
 .more-btn {
   font-size: 2rem;
   margin-left: 28px;
   padding: 4px 8px;
   background-color: transparent;
+  cursor: pointer;
+}
+.actions-btn {
+  background-color: transparent;
+  font-size: 2rem;
+  color: #161823;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+//avatar
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 8px;
   cursor: pointer;
 }
