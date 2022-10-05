@@ -13,16 +13,26 @@ const cx = classNames.bind(styles);
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
-  const [searchResults, setSearchaccounts] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [showResult, setShowResult] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const refInput = useRef();
 
   useEffect(() => {
-    setTimeout(() => {
-      setSearchaccounts([1, 2, 3]);
-    }, 0);
-  });
+    if (!searchValue.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    setLoading(true);
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+      .then((res) => res.json())
+      .then((res) => {
+        setSearchResults(res.data);
+        setLoading(false);
+      })
+      .catch(setLoading(true));
+  }, [searchValue]);
 
   const handleHideResult = () => {
     setShowResult(false);
@@ -40,11 +50,9 @@ function Search() {
         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
           <PopperWrapper>
             <h4 className={cx('search-title')}>Accounts</h4>
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
+            {searchResults.map((result) => (
+              <AccountItem key={result.id} data={result} />
+            ))}
           </PopperWrapper>
         </div>
       )}
@@ -59,12 +67,12 @@ function Search() {
           onChange={(e) => setSearchValue(e.target.value)}
           onFocus={() => setShowResult(true)}
         />
-        {!!searchValue && (
+        {!!searchValue && !loading && (
           <button className={cx('clear')} onClick={handleClickClear}>
             <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         )}
-        {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+        {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
         <button className={cx('search-btn')}>
           <SearchIcon />
         </button>
