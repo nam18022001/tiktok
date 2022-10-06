@@ -5,8 +5,8 @@
   --black: #000;
   --white: #fff;
   --text-color: rgb(22, 24, 35);
-  --font-bold: 'SofiaPro';
-  --font-solid: 'ProximaNova', sans-serif;
+  --font-family-bold: 'SofiaPro';
+  --font-family-main: 'ProximaNova', sans-serif;
 
   --default-layout-header-height: 60px;
   --default-layout-width: 1150px;
@@ -22,7 +22,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-family: var(--font-solid);
+  font-family: var(--font-family-main);
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
@@ -43,7 +43,7 @@ a[href] {
 body {
   .tippy-box {
     background-color: rgba(84, 84, 84, 0.92);
-    font-family: var(--font-solid);
+    font-family: var(--font-family-main);
     font-size: 1.4rem;
     line-height: 2rem;
     border-radius: 8px;

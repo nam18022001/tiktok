@@ -1,3 +1,5 @@
+//library
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'tippy.js/dist/tippy.css';
@@ -14,6 +16,9 @@ import {
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
+// Routes Config
+import routesConfig from '~/config/routes';
+// import
 import styles from './Header.module.scss';
 import images from '~/assets/image/index';
 import Button from '~/components/Button';
@@ -91,7 +96,9 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('content')}>
         <div className={cx('logo')}>
-          <img src={images.logo} alt="Logo" />
+          <Link to={routesConfig.home}>
+            <img src={images.logo} alt="Logo" />
+          </Link>
         </div>
         <Search />
         <div className={cx('actions')}>
