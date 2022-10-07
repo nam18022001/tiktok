@@ -1,5 +1,5 @@
 function Home() {
-  return 'Hone';
+  return <div style={{ height: 2000 }}>Home</div>;
 }
 
 export default Home;
