@@ -17,7 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 // Routes Config
-import routesConfig from '~/config/routes';
+import config from '~/configs';
 // import
 import styles from './Header.module.scss';
 import images from '~/assets/image/index';
@@ -96,7 +96,7 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('content')}>
         <div className={cx('logo')}>
-          <Link to={routesConfig.home}>
+          <Link to={config.routes.home}>
             <img src={images.logo} alt="Logo" />
           </Link>
         </div>
